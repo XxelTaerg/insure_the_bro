@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: insurance
+        uid: 1000
+      context: ./
+      dockerfile: ./.docker/Dockerfile
+    image: insurance
+    container_name: insurance-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./insurance/:/var/www
+    networks:
+      - insurance_network
+
+  webserver:
+    image: nginx:alpine
+    container_name: insurance-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./insurance/:/var/www
+      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - insurance_network
+
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9002:9002"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+    networks:
+      - insurance_network
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+     - PMA_HOST:db
+     - PMA_ARBITRARY:1
+    restart: always
+    ports:
+     - 8081:80
+    networks:
+     - insurance_network
+
+networks:
+  insurance_network:
+    driver: bridge    
+volumes:
+    dbdata:
+        driver: local 
