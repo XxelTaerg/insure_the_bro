@@ -56,7 +56,7 @@
     <div class="user-login-inner">
         <div class="user-login-wrap rounded active">
             <h5 class="text-center mt-2 mb-3">Вход</h5>
-            <form class="signin-form mb-3" action="{{ route('login.custom') }}" method="POST">
+            <form class="signin-form mb-3" action="{{ route('insurance.company') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Email адрес</label>
@@ -139,8 +139,7 @@
                         <div class="header-right d-lg-flex ml-lg-auto">
                             <div class="topbar-info-wrap">
                                 <ul class="nav justify-content-center">
-                                    <li><a href="malto:info@ultrauniq.com"><span class="mail-text"><i
-                                                    class="ti-mail"></i> info@insurethebro.com</span></a></li>
+                                    <li>NameCompany</li>
                                 </ul>
                             </div>
                         </div><!-- .header-right -->
@@ -194,17 +193,19 @@
                             </div>
                             <!-- Site Menu -->
                             <ul class="nav site-menu d-none d-lg-flex">
-                                <li class="nav-item"><a href="index.html">Авто</a></li>
-                                <li class="nav-item"><a href="index.html">Здоровье</a></li>
-                                <li class="nav-item"><a href="index.html">Путешествия</a></li>
-                                <li class="nav-item"><a href="index.html">Недвижимость</a></li>
+                                <li class="nav-item"><a href="index.html">Продукты компании NameCompany</a></li>
                             </ul>
                         </div><!-- .header-left -->
                         <div class="header-right d-flex align-self-center ml-auto">
                             <!-- Signin Form Trigger -->
+                            <div class="form-submit-wrap text-center">
+                                <button type="submit"  class="btn btn-primary">Добавить продукт</button>
+                                <br>
+                                <br>
+                            </div>
                             <ul class="nav">
                                 <li class="login-dropdown menu-item-has-children">
-                                    <a href="#" class="signin-form-trigger"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
+                                    <a href="{{ route('signout') }}"><span class="ti-user mr-1" ></span>Выход</a>
                                 </li>
                             </ul>
                         </div><!-- .header-right -->
@@ -214,8 +215,7 @@
         </div><!-- .header-navbar -->
     </div><!-- .header-sticky-part -->
 </header><!--Header-->
-<section class="vector-featurebox-section">
-    <div class="section-inner">
+
         <div class="container">
             <div class="row">
                 <table class="table">
@@ -224,7 +224,7 @@
                         <th scope="col">#</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -232,7 +232,8 @@
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
-                        <td>@mdo</td>
+                        <td><button type="button" class="btn btn-secondary">Изменить</button>
+                            <button type="button" class="btn btn-danger">Удалить</button></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -249,82 +250,7 @@
                 </table>
             </div>
         </div>
-    </div>
-</section>
 
-<section class="vector-featurebox-section">
-    <div class="section-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <!-- Feature Box Vector -->
-                    <div
-                        class="feature-box feature-box-vector mb-5 mb-lg-0 text-center before-bg-square after-bg-square">
-                        <div class="feature-box-card">
-                            <div class="feature-box-icon-wrap mb-3">
-                                <span class="feature-box-abs-img set-as-background"
-                                      data-bgimg="images/vectors/abstract-vector-1.png"></span>
-                                <span class="feature-box-icon icon-lg text-white bg-none"><i
-                                        class="fa fa-line-chart"></i></span>
-                            </div>
-                            <div class="feature-box-body">
-                                <div class="feature-box-title-wrap mb-4">
-                                    <h4 class="feature-box-title">Застрахуй здровье</h4>
-                                </div>
-                                <div class="feature-box-content-wrap">
-                                    <p class="feature-box-content">Специальное предоложение на 1 год за 300 рублей</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- .feature-box -->
-                </div><!-- .col -->
-                <div class="col-md-6 col-lg-4">
-                    <div
-                        class="feature-box feature-box-vector mb-5 mb-lg-0 text-center before-bg-square after-bg-square">
-                        <div class="feature-box-card">
-                            <div class="feature-box-icon-wrap mb-3">
-                                <span class="feature-box-abs-img set-as-background"
-                                      data-bgimg="images/vectors/abstract-vector-2.png"></span>
-                                <span class="feature-box-icon icon-lg text-white bg-none"><i
-                                        class="fa fa-paper-plane"></i></span>
-
-                            </div>
-                            <div class="feature-box-body">
-                                <div class="feature-box-title-wrap mb-4">
-                                    <h4 class="feature-box-title">ТОЛЬКО СЕГОДНЯ!</h4>
-                                </div>
-                                <div class="feature-box-content-wrap">
-                                    <p class="feature-box-content">Возможность страхования сроком в 1 месяц</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- .feature-box -->
-                </div><!-- .col -->
-                <div class="col-lg-4">
-                    <div class="feature-box feature-box-vector text-center before-bg-square after-bg-square">
-                        <div class="feature-box-card">
-                            <div class="feature-box-icon-wrap mb-3">
-                                <span class="feature-box-abs-img set-as-background"
-                                      data-bgimg="images/vectors/abstract-vector-3.png"></span>
-                                <span class="feature-box-icon icon-lg text-white bg-none"><i
-                                        class="ti-email"></i></span>
-                            </div>
-                            <div class="feature-box-body">
-                                <div class="feature-box-title-wrap mb-4">
-                                    <h4 class="feature-box-title">Онлайн оповещение страхователя</h4>
-                                </div>
-                                <div class="feature-box-content-wrap">
-                                    <p class="feature-box-content">Теперь вы можете оповестить страховую компанию о
-                                        случившемся, наврав одно сообщение в мессенджере.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- .feature-box -->
-                </div><!-- .col -->
-            </div><!-- .row -->
-        </div><!-- .container -->
-    </div><!-- .section-inner -->
-</section>
 
 <footer class="section section-bg-dark">
     <div class="footer-bottom">
