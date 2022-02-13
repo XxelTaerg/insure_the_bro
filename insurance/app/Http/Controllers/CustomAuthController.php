@@ -1,14 +1,13 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegistrationRequest;
 use App\Models\InsuranceCompany;
-use Illuminate\Http\Request;
 use Hash;
 use Session;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class CustomAuthController extends Controller
 {
-
     public function index()
     {
         if(Auth::check()){
@@ -17,48 +16,28 @@ class CustomAuthController extends Controller
         return redirect('/');
     }
 
-    public function customLogin(Request $request)
+    public function customLogin(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->route('insurance.company');
-
         }
 
         return redirect("/");
     }
 
-    public function customRegistration(Request $request)
+    public function customRegistration(RegistrationRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'password' => 'required|min:6',
-        ]);
-
         $data = $request->all();
-        $check = $this->create($data);
-
-
-        return redirect("welcome")->withSuccess('You have signed-in');
-    }
-
-    public function create(array $data)
-    {
-        return InsuranceCompany::create([
+        $check = InsuranceCompany::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
             'password' => Hash::make($data['password'])
         ]);
+
+        return redirect("/");
     }
 
     public function signOut() {
