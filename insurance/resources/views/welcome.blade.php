@@ -139,7 +139,7 @@
                         <div class="header-right d-lg-flex ml-lg-auto">
                             <div class="topbar-info-wrap">
                                 <ul class="nav justify-content-center">
-                                    <li><a href="malto:info@ultrauniq.com"><span class="mail-text"><i
+                                    <li><a href="malto:info@insurethebro.com"><span class="mail-text"><i
                                                     class="ti-mail"></i> info@insurethebro.com</span></a></li>
                                 </ul>
                             </div>
@@ -194,10 +194,10 @@
                             </div>
                             <!-- Site Menu -->
                             <ul class="nav site-menu d-none d-lg-flex">
-                                <li class="nav-item"><a href="index.html">Авто</a></li>
-                                <li class="nav-item"><a href="index.html">Здоровье</a></li>
-                                <li class="nav-item"><a href="index.html">Путешествия</a></li>
-                                <li class="nav-item"><a href="index.html">Недвижимость</a></li>
+                                <li class="nav-item"><a href="{{ route('index') }}">Все</a></li>
+                                @foreach ($productCategories as $key=>$category)
+                                    <li class="nav-item"><a href="{{ route('filter.categories', ['category_id'=>$category->id]) }}">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div><!-- .header-left -->
                         <div class="header-right d-flex align-self-center ml-auto">
@@ -218,22 +218,31 @@
     <div class="section-inner">
         <div class="container">
             <div class="row">
+                <br>
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Процент страхования</th>
+                        <th scope="col">Срок страхования</th>
+                        <th scope="col">Компания</th>
+                        <th scope="col">Категория</th>
+                        <th scope="col">Действие</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @foreach ($products as $key=>$product)
+                            <tr>
+                                <th scope="row">{{ $key+1 }}</th>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->percent }}</td>
+                                <td>{{ $product->period}}</td>
+                                <td>{{ $product->insuranceCompany->name}}</td>
+                                <td>{{ $product->category->name}}</td>
+                                <td><button type="button" class="btn btn-success">Оформить</button></td>
+                            </tr>
+                    @endforeach
                     <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>

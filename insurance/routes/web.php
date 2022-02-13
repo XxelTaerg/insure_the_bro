@@ -20,6 +20,7 @@ Route::get('/insertproduct', function () {
     return view('insertproduct');
 });
 Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/product/{category_id}/category', [MainController::class, 'categories'])->name('filter.categories');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('insurancecompany', [CustomAuthController::class, 'index'])->name('insurance.company');
