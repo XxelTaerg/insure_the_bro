@@ -13,10 +13,10 @@ class Product extends Model
 
     public function insuranceCompany()
     {
-        return $this->hasOne(InsuranceCompany::class);
+        return $this->belongsTo(InsuranceCompany::class, 'company_id');
     }
     public function category()
     {
-        return $this->hasOne(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 }
