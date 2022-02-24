@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = ['name', 'percent', 'period', 'company_id', 'category_id'];
 
