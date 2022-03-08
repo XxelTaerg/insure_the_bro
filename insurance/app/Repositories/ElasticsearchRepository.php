@@ -29,7 +29,7 @@ class ElasticsearchRepository implements ProductsRepository
             'body' => [
                 'query' => [
                     'multi_match' => [
-                        'fields' => ['name'],
+                        'fields' => ['name','name_company'],
                         'query' => $query,
                     ],
                 ],

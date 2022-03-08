@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 
 
+use App\Models\InsuranceCompany;
 use App\Search\ElasticsearchObserver;
 
 trait Searchable
@@ -29,11 +30,9 @@ trait Searchable
     }
     public function toSearchArray()
     {
-        // Наличие пользовательского метода
-        // преобразования модели в поисковый массив
-        // позволит нам настраивать данные
-        // которые будут доступны для поиска
-        // по каждой модели.
-        return $this->toArray();
+        $data = $this->toArray();
+        $data['name_company'] = $this->insuranceCompany->name;
+
+        return $data;
     }
 }
