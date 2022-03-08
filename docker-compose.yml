@@ -11,6 +11,8 @@ services:
     container_name: insurance-app
     restart: unless-stopped
     working_dir: /var/www/
+    links:
+      - elasticsearch
     volumes:
       - ./insurance/:/var/www
     networks:
@@ -57,9 +59,23 @@ services:
     networks:
      - insurance_network
 
+  elasticsearch:
+    image: elasticsearch:7.17.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+    volumes:
+      - eldata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - insurance_network
+
 networks:
   insurance_network:
     driver: bridge    
 volumes:
     dbdata:
-        driver: local 
+        driver: local
+    eldata:

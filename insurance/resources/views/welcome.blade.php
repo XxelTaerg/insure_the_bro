@@ -39,9 +39,9 @@
     <a href="#" class="abs-trigger-right overlay-search-close overlay-search-trigger"><span
             class="ti-close text-light"></span></a>
     <div class="search-overlay-inner">
-        <form class="search-form">
+        <form class="search-form" action="{{ route('search') }}" method="get">
             <div class="input-group">
-                <input type="text" name="s" class="form-control" placeholder="Введите то, что ищете..">
+                <input type="text" name="search" class="form-control" placeholder="Введите то, что ищете..">
                 <div class="input-group-append">
                     <button class="btn btn-dark" type="submit"><span class="ti-search"></span></button>
                 </div>
@@ -243,17 +243,6 @@
                                 <td><button type="button" class="btn btn-success">Оформить</button></td>
                             </tr>
                     @endforeach
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
