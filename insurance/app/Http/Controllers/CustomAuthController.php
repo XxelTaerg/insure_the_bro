@@ -8,13 +8,6 @@ use Session;
 use Illuminate\Support\Facades\Auth;
 class CustomAuthController extends Controller
 {
-    public function index()
-    {
-        if(Auth::check()){
-            return view('insurancecompany');
-        }
-        return redirect('/');
-    }
 
     public function customLogin(LoginRequest $request)
     {
@@ -23,7 +16,7 @@ class CustomAuthController extends Controller
             return redirect()->route('insurance.company');
         }
 
-        return redirect("/");
+        return redirect()->route('account');
     }
 
     public function customRegistration(RegistrationRequest $request)
