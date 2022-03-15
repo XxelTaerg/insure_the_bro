@@ -23,11 +23,15 @@ class MainController extends Controller
     public function categories($categoryId)
     {
         $productCategories = ProductCategory::all();
-        $products = Product::where('category_id', $categoryId)
-        ->get();
+        $products = Product::where('category_id', $categoryId)->get();
 
         return view('welcome', ['products' => $products, 'productCategories' => $productCategories]);
 
+    }
+
+    public function showFeedback($productId){
+        $product = Product::find($productId);
+        return view('sendfeedback', ['product' => $product]);
     }
 
 }
