@@ -4,8 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Product;
 use Elasticsearch\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Database\Eloquent\Collection;
 
 class ElasticsearchRepository implements ProductsRepository
 {
@@ -15,7 +15,7 @@ class ElasticsearchRepository implements ProductsRepository
     {
         $this->elasticsearch = $elasticsearch;
     }
-    public function search(string $query = ''): Collection
+    public function search(string $query = ''): Builder
     {
         $items = $this->searchOnElasticsearch($query);
         return $this->buildCollection($items);
@@ -36,12 +36,9 @@ class ElasticsearchRepository implements ProductsRepository
             ],
         ]);
     }
-    private function buildCollection(array $items): Collection
+    private function buildCollection(array $items): Builder
     {
         $ids = Arr::pluck($items['hits']['hits'], '_id');
-        return Product::query()->findMany($ids)
-            ->sortBy(function ($product) use ($ids) {
-                return array_search($product->getKey(), $ids);
-            });
+        return Product::query()->whereIn('id', $ids)->orderBy('id');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class EloquentRepository implements ProductsRepository
 {
@@ -11,12 +11,11 @@ class EloquentRepository implements ProductsRepository
      * ПОиск через sql запрос
      *
      * @param string $query
-     * @return Collection
+     * @return Builder
      */
-    public function search(string $query = ''): Collection
+    public function search(string $query = ''): Builder
     {
         return Product::query()
-            ->where('name', 'like', "%{$query}%")
-            ->get();
+            ->where('name', 'like', "%{$query}%");
     }
 }

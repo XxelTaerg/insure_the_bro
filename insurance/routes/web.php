@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\InsuranceCompanyController;
 
@@ -17,13 +17,23 @@ use App\Http\Controllers\InsuranceCompanyController;
 */
 
 
-
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+Route::group([
+    'as' => 'auth.',
+    'prefix' => 'auth'
+], function () {
+    Route::get('registration', [AuthController::class, 'showRegistrationForm'])->name('register-show');
+    Route::post('registration', [AuthController::class, 'registration'])->name('register');
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login-show');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+});
+Route::post('registration', [AuthController::class, 'registration'])->name('register.custom');
+Route::post('login', [AuthController::class, 'login'])->name('login.custom');
+Route::get('login', [AuthController::class, 'login'])->name('login.custom');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/product/{category_id}/category', [MainController::class, 'categories'])->name('filter.categories');
+Route::get('/product/{category_id}/category', [MainController::class, 'getProductsByCategory'])->name('filter.categories');
 Route::get('search', [MainController::class, 'index'])->name('search');
 
 Route::get('product/{product_id}/feedback', [MainController::class, 'showFeedback'])->name('feedback.show');

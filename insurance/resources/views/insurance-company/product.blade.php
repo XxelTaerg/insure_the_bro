@@ -14,33 +14,39 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="contact-form-wrapper">
-                        <form id="ajax-contact"
-                              action="#" method="post"
+                        <form action="{{ !isset($product) ? route('account.product-add') : route('account.product-update', ['product_id' => $product->id]) }}" method="post"
                               novalidate="true">
+                            @isset($product)
+                                @method('PUT')
+                            @endisset
                             <div class="contact-form">
                                 <label for="name">Название продукта*</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                       placeholder="Название"
+                                       placeholder="Название" value="{{ $product->name ?? '' }}"
                                        required="required">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="contact-form">
                                 <label for="percent">Процентная ставка*</label>
                                 <input type="number" class="form-control" id="email" name="percent"
-                                       placeholder="Процент" required="required">
+                                       placeholder="Процент" required="required"
+                                       value="{{ $product->percent ?? null }}">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="contact-form">
                                 <label for="period">Срок* (в месяцах)</label>
                                 <input type="number" class="form-control" id="period" name="period"
-                                       placeholder="Срок" required="required">
+                                       placeholder="Срок" required="required" value="{{ $product->period ?? null }}">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label for="category">Выберите категорию</label>
                                 <select class="form-control" id="category">
                                     @foreach($productCategories as $productCategory)
-                                        <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+                                        <option value="{{ $productCategory->id }}"
+                                                @if($product->category_id === $productCategory->id) selected="selected" @endif>
+                                            {{ $productCategory->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

@@ -15,7 +15,7 @@
 03. Social Icon Styles
 04. Header Styles
 05. Footer Styles
-06. Feature Box Styles 
+06. Feature Box Styles
 07. Counter Styles
 08. Carousel Styles
 09. Accordion Style
@@ -45,7 +45,7 @@
 -------------------------------------------------------------------------------------- */
 
 /* 01. General Style */
-body {	
+body {
 	font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -130,7 +130,7 @@ a:hover, a:active {
     border-color: #663fe7;
 }
 section {
-	padding: 100px 0;
+	padding: 50px 0;
     position: relative;
 }
 .section-mingle-top {
@@ -166,11 +166,11 @@ section {
 	background-position: 50% 0;
 }
 .section-bg-mild {
-	background-color: #f9f9f9; 
+	background-color: #f9f9f9;
 }
 .section-bg-dark {
     color: #d6d6d6;
-	background-color: #252525; 
+	background-color: #252525;
 }
 .section-bg-light {
     color: #111;
@@ -252,7 +252,7 @@ footer .footer-dark h2.widget-title, footer .footer-dark a:not(.btn){
 		width: 300px;
 		display: none;
 	}
-}	
+}
 .abs-dots.dots-center:before {
     left: 0;
     right: 0;
@@ -354,7 +354,7 @@ footer .footer-dark h2.widget-title, footer .footer-dark a:not(.btn){
 }
 .about-img-left:hover img {
 	transform: scale(1.05) rotate(-2deg);
-}	
+}
 .about-img-right {
     position: relative;
     z-index: 1;
@@ -387,7 +387,7 @@ footer .footer-dark h2.widget-title, footer .footer-dark a:not(.btn){
 }
 .about-img-right:hover img {
 	transform: scale(1.05) rotate(2deg);
-}	
+}
 .about-content {
     position: relative;
 }
@@ -762,7 +762,7 @@ a.mobile-top-sliding {
 .set-header-sticky:not(.header-sticky) .header-abs ul.site-menu > li > a {
 	color: #fff;
 }
-.set-header-sticky:not(.header-sticky) .header-abs.abs-text-light a, 
+.set-header-sticky:not(.header-sticky) .header-abs.abs-text-light a,
 .set-header-sticky:not(.header-sticky) .header-abs.abs-text-light ul.site-menu > li > a {
 	color: #111;
 }
@@ -887,19 +887,19 @@ span.menu-ribbon.ribbon-new {
 	background: #0bad0b;
 }
 span.menu-ribbon.ribbon-new:before {
-	border-right: 4px solid #0bad0b;  
+	border-right: 4px solid #0bad0b;
 }
 span.menu-ribbon.ribbon-trend {
 	background: #113ee3;
 }
 span.menu-ribbon.ribbon-trend:before {
-	border-right: 4px solid #113ee3;  
+	border-right: 4px solid #113ee3;
 }
 span.menu-ribbon.ribbon-hot {
 	background: #ef3d3d;
 }
 span.menu-ribbon.ribbon-hot:before {
-	border-right: 4px solid #ef3d3d;  
+	border-right: 4px solid #ef3d3d;
 }
 ul.site-menu > li > a {
 	padding: 0 14px;
@@ -968,14 +968,14 @@ li.mega-menu-parent.menu-item-has-children {
 }
 li.menu-item-has-children .sub-menu {
     position: absolute;
-    left: 0;	
+    left: 0;
     width: 200px;
     z-index: 1;
 	font-size: 12px;
     background-color: #fff;
     line-height: 34px;
 	opacity: 0;
-    visibility: hidden;	
+    visibility: hidden;
     transition: all ease 0.35s;
 }
 li.menu-item-has-children .sub-menu.mega-menu {
@@ -1181,7 +1181,7 @@ a.active span.toggle-lines {
 	width: 50%;
     position: absolute;
 	top: 50%;
-    left: 0;	
+    left: 0;
     right: 0;
 	margin: 0 auto;
     opacity: 0;
@@ -1330,7 +1330,7 @@ span.icon-theme i {
 }
 .feature-box:hover .icon-theme {
 	color: #663fe7;
-}	
+}
 .feature-box.feature-box-classic:hover .feature-box-icon,
 .feature-box.feature-box-floating:hover .feature-box-icon,
 .feature-box.feature-list:hover .feature-box-icon,
@@ -1338,7 +1338,7 @@ span.icon-theme i {
     background-color: #313131;
     color: #fff;
 }
-.feature-box.feature-box-classic, .feature-box.feature-box-vector, .feature-box.feature-box-floating {   
+.feature-box.feature-box-classic, .feature-box.feature-box-vector, .feature-box.feature-box-floating {
     background: transparent;
 	position: relative;
 	padding: 1.5rem;
@@ -1597,7 +1597,7 @@ ul.post-top-meta ul.post-meta {
 }
 .post-image-with-overlay {
     position: relative;
-}	
+}
 .post-overlay-wrap {
     position: absolute;
     bottom: 0;
@@ -1848,7 +1848,7 @@ img.testimonial-img {
 }
 .owl-carousel .owl-item .testimonial-image-wrap:hover img {
 	transform: scale(1.05);
-}	
+}
 .owl-carousel .owl-item .testimonial-image-wrap img {
 	transition: all ease .35s;
 }
@@ -1959,11 +1959,11 @@ img.testimonial-img {
     width: 50%;
 	display: inline-block;
     vertical-align: middle;
-}	
+}
 .owl-carousel .owl-item .team-image-wrap-full img {
 	display: inline-block;
     vertical-align: middle;
-}	
+}
 .team-wraper:hover .team-image-wrap-classic img {
     transform: translateY(-20px);
     box-shadow: 0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.12);
@@ -1974,8 +1974,8 @@ img.testimonial-img {
     max-width: 120px;
     text-align: center;
     margin: 0 auto;
-}	
-	
+}
+
 /* 15. Timeline Styles */
 .timeline {
 	list-style: none;
@@ -2172,7 +2172,7 @@ span.tl-separator-txt {
 		top: 16px;
 		left: 16px;
 		margin-left: 0;
-	
+
 	}
 	ul.timeline > li > .tldate {
 		margin: 0;
@@ -2294,7 +2294,7 @@ ul.overlay-icons {
     height: 100%;
     content: '';
     transition: all 0.4s ease-out;
-}	
+}
 .portfolio-inner:hover:after {
     width: 100%;
 }
@@ -2490,7 +2490,7 @@ a.portfolio-tags {
 }
 .contact-form-icon span {
     font-size: 40px;
-}	
+}
 .contact-icon {
     position: absolute;
     font-size: 25px;
@@ -2708,12 +2708,12 @@ a.portfolio-tags {
 }
 @-webkit-keyframes rounded-waves {
 	0% {
-		opacity: 0; 
+		opacity: 0;
 	}
 	40% {
 		opacity: 0.5;
 		-webkit-box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
-		box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff; 
+		box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
 	}
 	100% {
 		-webkit-box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
@@ -2721,7 +2721,7 @@ a.portfolio-tags {
 		-webkit-transform: scale(1.5);
 		transform: scale(1.5);
 		opacity: 0;
-	} 
+	}
 }
 @keyframes rounded-waves {
 	0% {
@@ -2730,15 +2730,15 @@ a.portfolio-tags {
 	40% {
 		opacity: 0.5;
 		-webkit-box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
-		box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff; 
+		box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
 	}
 	100% {
 		-webkit-box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
 		box-shadow: 0 0 0 2px #ffffff, 0 0 5px 5px transparent, 0 0 0 5px #ffffff;
 		-webkit-transform: scale(1.5);
 		transform: scale(1.5);
-		opacity: 0; 
-	} 
+		opacity: 0;
+	}
 }
 .foxy-animate:not(.animate-done) {
 	opacity: 0;
@@ -2806,7 +2806,7 @@ section.float-parallax-started .float-parallax{
     -o-animation-duration: 2s;
     -o-animation-iteration-count: infinite;
     -o-animation-timing-function: linear;
-}	
+}
 @-webkit-keyframes floating-animate-model-1 {
   0% {
     -webkit-transform: translateY(-30px);
@@ -2865,7 +2865,7 @@ section.float-parallax-started .float-parallax{
     from {
         transform: rotate(0deg);
     }
-    to { 
+    to {
         transform: rotate(360deg);
     }
 }
@@ -2873,7 +2873,7 @@ section.float-parallax-started .float-parallax{
     from {
         -webkit-transform: rotate(0deg);
     }
-    to { 
+    to {
         -webkit-transform: rotate(360deg);
     }
 }
@@ -2881,7 +2881,7 @@ section.float-parallax-started .float-parallax{
     from {
         -moz-transform: rotate(0deg);
     }
-    to { 
+    to {
         -moz-transform: rotate(360deg);
     }
 }
@@ -2889,7 +2889,7 @@ section.float-parallax-started .float-parallax{
     from {
         -o-transform: rotate(0deg);
     }
-    to { 
+    to {
         -o-transform: rotate(360deg);
     }
 }
@@ -2914,13 +2914,13 @@ section.float-parallax-started .float-parallax{
     -o-animation-duration: 7s;
     -o-animation-iteration-count: infinite;
     -o-animation-timing-function: linear;
-}	
+}
 
 @keyframes floating-animate-model-3 {
     from {
         transform: rotate(0deg);
     }
-    to { 
+    to {
         transform: rotate(360deg);
     }
 }
@@ -2928,7 +2928,7 @@ section.float-parallax-started .float-parallax{
     from {
         -webkit-transform: rotate(0deg);
     }
-    to { 
+    to {
         -webkit-transform: rotate(360deg);
     }
 }
@@ -2936,7 +2936,7 @@ section.float-parallax-started .float-parallax{
     from {
         -moz-transform: rotate(0deg);
     }
-    to { 
+    to {
         -moz-transform: rotate(360deg);
     }
 }
@@ -2944,7 +2944,7 @@ section.float-parallax-started .float-parallax{
     from {
         -o-transform: rotate(0deg);
     }
-    to { 
+    to {
         -o-transform: rotate(360deg);
     }
 }
@@ -3037,7 +3037,7 @@ section.float-parallax-started .float-parallax{
     top: 0;
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
-    transform: scale(0.9);	
+    transform: scale(0.9);
 	height: 100%;
     width: 100%;
     border-radius: 50%;
@@ -3051,7 +3051,7 @@ section.float-parallax-started .float-parallax{
 	section.top-attached-section {
 		margin-top: -175px;
 	}
-}	
+}
 
 /* 28. Icon List Styles */
 ul.icon-list > li.icon-list-item {

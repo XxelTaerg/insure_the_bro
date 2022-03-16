@@ -1,37 +1,58 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\ProductCategory;
+
 use App\Repositories\ProductsRepository;
-use Hash;
-use Session;
-use App\Models\Product;
+use App\Services\MainService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 
 class MainController extends Controller
 {
-
-    public function index(ProductsRepository $productsRepository)
+    /**
+     * Страница списка всех товаров
+     *
+     * @param Request $request
+     * @param MainService $service
+     * @param ProductsRepository $productsRepository
+     * @return Application|Factory|View
+     */
+    public function index(Request $request, MainService $service, ProductsRepository $productsRepository)
     {
-        $products = request()->has('search')
-            ? $productsRepository->search(request('search'))
-            : Product::all();
-        $productCategories = ProductCategory::all();
+        $products = $service->getProducts($request, $productsRepository);
+        $categories = $service->getAllCategories();
 
-        return view('welcome', ['products' => $products, 'productCategories' => $productCategories]);
+        return view('welcome', ['products' => $products, 'productCategories' => $categories]);
     }
 
-    public function categories($categoryId)
+    /**
+     * Страница таблицы товаров для конкретной категории
+     *
+     * @param int $categoryId
+     * @param MainService $service
+     * @return Application|Factory|View
+     */
+    public function getProductsByCategory(int $categoryId, MainService $service)
     {
-        $productCategories = ProductCategory::all();
-        $products = Product::where('category_id', $categoryId)->get();
+        $products = $service->getProductsByCategory($categoryId);
+        $categories = $service->getAllCategories();
 
-        return view('welcome', ['products' => $products, 'productCategories' => $productCategories]);
+        return view('welcome', ['products' => $products, 'productCategories' => $categories]);
 
     }
 
-    public function showFeedback($productId){
-        $product = Product::find($productId);
-        return view('sendfeedback', ['product' => $product]);
+    /**
+     * Страница отклика
+     *
+     * @param int $productId
+     * @param MainService $service
+     * @return Application|Factory|View
+     */
+    public function showFeedback(int $productId, MainService $service)
+    {
+        return view('send-feedback', ['product' => $service->findProduct($productId)]);
     }
-
 }

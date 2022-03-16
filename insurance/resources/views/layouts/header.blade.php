@@ -1,3 +1,5 @@
+@include('components.search')
+
 <!--Header-->
 <header class="masterhead">
 
@@ -40,7 +42,7 @@
                     <div class="header-center justify-content-center d-flex">
                         <!-- Site Logo -->
                         <div class="logo-wrap">
-                            <a href="index.html" class="site-logo default-logo"><img class="img-fluid"
+                            <a href="{{ route('index') }}" class="site-logo default-logo"><img class="img-fluid"
                                                                                      alt="insurethebro"
                                                                                      src="{{ asset('images/logos.png') }}"></a>
                         </div>
@@ -68,7 +70,7 @@
                         <div class="header-left d-flex">
                             <!-- Logo Wrapper -->
                             <div class="logo-wrap m-0">
-                                <a href="index.html" class="site-logo sticky-logo"><img class="img-fluid mr-3"
+                                <a href="{{ route('index') }}" class="site-logo sticky-logo"><img class="img-fluid mr-3"
                                                                                         alt="insurethebro"
                                                                                         src="{{ asset('images/logos.png') }}"></a>
                             </div>
@@ -78,23 +80,22 @@
                         </div><!-- .header-left -->
                         <div class="header-right d-flex align-self-center ml-auto">
                             <!-- Signin Form Trigger -->
-                            @auth
+                            @guest
+                                <ul class="nav">
+                                    <li class="login-dropdown menu-item-has-children">
+                                        <a href="{{ route('auth.login-show') }}" class="signin-form-trigger"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
+                                    </li>
+                                </ul>
+                            @elseguest
                                 <ul class="nav site-menu d-none d-lg-flex">
                                     <li class="nav-item menu-item-has-children">
                                         <span>{{ auth()->user()->name }}</span>
                                         <ul class="nav flex-column sub-menu">
-                                            <li class="nav-item"><a href="{{ 'signout' }}">Выйти</a></li>
+                                            <li class="nav-item"><a href="{{ route('auth.signout') }}">Выйти</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                            @elseauth
-                                <ul class="nav">
-                                    <li class="login-dropdown menu-item-has-children">
-                                        <a href="#" class="signin-form-trigger"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
-                                    </li>
-                                </ul>
-                            @endauth
-
+                            @endguest
                         </div><!-- .header-right -->
                     </div><!-- .header-parts-nav -->
                 </div><!-- .header-parts-wrap -->
