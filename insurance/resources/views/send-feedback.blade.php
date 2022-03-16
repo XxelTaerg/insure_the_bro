@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="container col-md-9">
-            <a href="{{ route('index') }}" class="btn btn-outline-primary btn-sm m-1">
+            <a href="{{ route('index') }}" class="btn btn-primary btn-sm m-1">
                 <span class="mr-2 ti-arrow-left align-left"></span> На главную
             </a>
         </div>

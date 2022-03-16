@@ -21,7 +21,7 @@
                         <tbody>
                         @forelse($products as $key=>$product)
                             <tr>
-                                <th scope="row">{{ $key+1 }}</th>
+                                <th scope="row">{{ ($products->currentpage()-1) * $products->perpage() + $key + 1 }}</th>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->percent }}</td>
                                 <td>{{ $product->period}}</td>
@@ -37,6 +37,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    {{ $products->appends(request()->query())->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </div>

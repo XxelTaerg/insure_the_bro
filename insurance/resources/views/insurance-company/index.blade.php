@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="row">
-        <div class="container col-md-9 text-right mb-2">
-            <a href="{{ route('account.insert-product') }}" class="btn btn-outline-success btn-md m-1">
+        <div class="container text-right mb-2">
+            <a href="{{ route('account.product-save-form') }}" class="btn btn-success btn-md m-1">
                 Добавить продукт
             </a>
         </div>
@@ -26,27 +26,36 @@
                 <tbody>
                 @forelse ($products as $key=>$product)
                     <tr>
-                        <th scope="row">{{ $key+1 }}</th>
+                        <th scope="row">{{  ($products->currentpage()-1) * $products->perpage() + $key + 1 }}</th>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->percent }}</td>
                         <td>{{ $product->period}}</td>
                         <td>{{ $product->category->name}}</td>
                         <td>
-                            <a href="#"
-                               class="btn btn-secondary">Редактировать</a>
+                            <div class="row">
+                                <a href="{{ route('account.product-update-form', ['product_id' => $product->id]) }}"
+                                   class="btn btn-secondary mr-1">Редактировать</a>
 
-                            <form action="#" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit">Удалить</button>
-                            </form>
+                                <form
+                                    action="{{ route('account.product-delete', ['product_id' => $product->id]) }}"
+                                    method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Удалить</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="6" class="text-center">Пусто</td></tr>
+                    <tr>
+                        <td colspan="6" class="text-center">Пусто</td>
+                    </tr>
                 @endforelse
                 </tbody>
             </table>
+
+            {{ $products->links('vendor.pagination.custom') }}
+
         </div>
     </div>
 
