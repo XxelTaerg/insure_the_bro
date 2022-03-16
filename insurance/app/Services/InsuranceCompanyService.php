@@ -27,13 +27,17 @@ class InsuranceCompanyService extends BaseService
      */
     public function saveProduct(array $data)
     {
-        return Product::query()->create([
+        $prepareData = [
+            'id' => null,
             'name' => $data['name'],
             'percent' => $data['percent'],
             'period' => $data['period'],
             'company_id' => auth()->user()->id,
             'category_id' => $data['category_id']
-        ]);
+        ];
+        $product = new Product();
+
+        return $this->saveProductToDB($prepareData, $product);
     }
 
     /**
@@ -43,13 +47,44 @@ class InsuranceCompanyService extends BaseService
      */
     public function updateProduct(int $id, array $data)
     {
-        return Product::query()
-            ->find($id)
-            ->update([
-                'name' => $data['name'],
-                'percent' => $data['percent'],
-                'period' => $data['period'],
-                'category_id' => $data['category_id']
-            ]);
+        $prepareData = [
+            'name' => $data['name'],
+            'percent' => $data['percent'],
+            'period' => $data['period'],
+            'category_id' => $data['category_id']
+        ];
+        $product = Product::query()
+            ->where('company_id', auth()->user()->id)
+            ->where('id', $id)
+            ->first();
+
+        return $this->saveProductToDB($prepareData, $product);
+    }
+
+    /**
+     * Метод сохранения данных в базу
+     *
+     * @param $prepareData
+     * @param $product
+     * @return mixed
+     */
+    private function saveProductToDB($prepareData, $product) {
+        $product = $product->fill($prepareData);
+        $product->save();
+
+        return $product;
+    }
+
+    /**
+     * Удаление продукта
+     *
+     * @param int $id
+     * @return void
+     */
+    public function deleteProduct(int $id) {
+        Product::query()
+            ->where('company_id', auth()->user()->id)
+            ->where('id', $id)
+            ->delete();
     }
 }

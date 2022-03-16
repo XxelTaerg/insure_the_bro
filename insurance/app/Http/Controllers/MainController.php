@@ -53,6 +53,19 @@ class MainController extends Controller
      */
     public function showFeedback(int $productId, MainService $service)
     {
-        return view('send-feedback', ['product' => $service->findProduct($productId)]);
+        return view('send-feedback', ['product' => $service->getProductById($productId)]);
+    }
+
+    /**
+     * Страница отклика
+     *
+     * @param int $productId
+     * @param MainService $service
+     * @return Application|Factory|View
+     */
+    public function sendFeedback(int $productId, MainService $service)
+    {
+        $service->sendFeedback($productId, );
+        return view('send-feedback', ['product' => $service->getProductById($productId)]);
     }
 }

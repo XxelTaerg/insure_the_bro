@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\InsuranceCompany;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -13,7 +12,7 @@ class AuthService
     /**
      * Авторизация
      *
-     * @param Request $request
+     * @param array $credentials
      * @return bool
      */
     public function checkLogin(array $credentials)
@@ -35,17 +34,21 @@ class AuthService
     /**
      * Регистрация
      *
-     * @param Request $request
+     * @param array $data
      * @return void
      */
     public function register(array $data)
     {
-        InsuranceCompany::create([
+        $prepareData = [
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
             'password' => Hash::make($data['password'])
-        ]);
+        ];
+
+        $company = new InsuranceCompany();
+        $company->fill($prepareData);
+        $company->save();
     }
 }

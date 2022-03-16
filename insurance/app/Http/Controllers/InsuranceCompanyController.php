@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Product\SaveProductRequest;
+use App\Http\Requests\InsuranceCompany\SaveProductRequest;
 use App\Services\InsuranceCompanyService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -28,24 +28,36 @@ class InsuranceCompanyController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function insertProduct(InsuranceCompanyService $service)
+    public function insertProductForm(InsuranceCompanyService $service)
     {
         $categories = $service->getAllCategories();
 
-        return view('insurance-company.insert-product', ['productCategories' => $categories]);
+        return view('insurance-company.product', ['productCategories' => $categories]);
     }
 
     /**
      * Создание нового продукта
      *
-     * @return Application|Factory|View
+     * @return string
      */
     public function saveProduct(SaveProductRequest $request, InsuranceCompanyService $service)
     {
         $product = $service->saveProduct($request->validated());
+
+        return route('account.product-update-form', ['product_id' => $product->id]);
+    }
+
+    /**
+     * Обновление продукта
+     *
+     * @return Application|Factory|View
+     */
+    public function updateProductForm(int $id, InsuranceCompanyService $service)
+    {
+        $product = $service->getProductById($id);
         $categories = $service->getAllCategories();
 
-        return view('insurance-company.insert-product', ['productCategories' => $categories, 'product' => $product]);
+        return view('insurance-company.product', ['productCategories' => $categories, 'product' => $product]);
     }
 
     /**
@@ -58,6 +70,18 @@ class InsuranceCompanyController extends Controller
         $product = $service->updateProduct($id, $request->validated());
         $categories = $service->getAllCategories();
 
-        return view('insurance-company.insert-product', ['productCategories' => $categories, 'product' => $product]);
+        return view('insurance-company.product', ['productCategories' => $categories, 'product' => $product]);
+    }
+
+    /**
+     * Обновление продукта
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteProduct(int $id, InsuranceCompanyService $service)
+    {
+        $service->deleteProduct($id);
+
+        return redirect()->back();
     }
 }

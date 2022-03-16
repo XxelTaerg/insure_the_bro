@@ -56,7 +56,9 @@
                 {{--                    <label>Повторите пароль</label>--}}
                 {{--                    <input type="password" class="form-control" name="confirmpassword">--}}
                 {{--                </div>--}}
-                <input type="submit" name="registersubmit" class="btn btn-primary mt-2" value="Регистрация">
+                <div class="text-center">
+                    <input type="submit" name="registersubmit" class="btn btn-primary mt-2" value="Регистрация">
+                </div>
             </form>
         </div>
     </div>

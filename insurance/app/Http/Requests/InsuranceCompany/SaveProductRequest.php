@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\InsuranceCompany;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,7 +26,7 @@ class SaveProductRequest extends FormRequest
         return [
             'name' => 'required|string',
             'period' => 'required|integer',
-            'percent' => 'required|float',
+            'percent' => 'required|numeric',
             'category_id' => 'required|exists:product_categories,id'
         ];
     }

@@ -86,7 +86,8 @@
                                         <a href="{{ route('auth.login-show') }}" class="signin-form-trigger"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
                                     </li>
                                 </ul>
-                            @elseguest
+                            @endguest
+                            @auth
                                 <ul class="nav site-menu d-none d-lg-flex">
                                     <li class="nav-item menu-item-has-children">
                                         <span>{{ auth()->user()->name }}</span>
@@ -95,7 +96,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            @endguest
+                            @endauth
                         </div><!-- .header-right -->
                     </div><!-- .header-parts-nav -->
                 </div><!-- .header-parts-wrap -->

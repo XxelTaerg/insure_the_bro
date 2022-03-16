@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="row">
-        <div class="container col-md-9 text-right mb-2">
-            <a href="{{ route('account.insert-product') }}" class="btn btn-outline-success btn-md m-1">
+        <div class="container text-right mb-2">
+            <a href="{{ route('account.product-save-form') }}" class="btn btn-success btn-md m-1">
                 Добавить продукт
             </a>
         </div>
@@ -32,14 +32,18 @@
                         <td>{{ $product->period}}</td>
                         <td>{{ $product->category->name}}</td>
                         <td>
-                            <a href="#"
-                               class="btn btn-secondary">Редактировать</a>
+                            <div class="row">
+                                <a href="{{ route('account.product-update-form', ['product_id' => $product->id]) }}"
+                                   class="btn btn-secondary mr-1">Редактировать</a>
 
-                            <form action="#" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit">Удалить</button>
-                            </form>
+                                <form
+                                    action="{{ route('account.product-delete', ['product_id' => $product->id]) }}"
+                                    method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Удалить</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @empty
@@ -49,7 +53,9 @@
                 @endforelse
                 </tbody>
             </table>
+
             {{ $products->links('vendor.pagination.custom') }}
+
         </div>
     </div>
 
