@@ -49,4 +49,5 @@ Route::group([
     Route::get('/product/{product_id}/update', [InsuranceCompanyController::class, 'updateProductForm'])->name('product-update-form');
     Route::put('/product/{product_id}/update', [InsuranceCompanyController::class, 'updateProduct'])->name('product-update');
     Route::delete('/product/{product_id}/delete', [InsuranceCompanyController::class, 'deleteProduct'])->name('product-delete');
+    Route::get('/feedbacks', [InsuranceCompanyController::class, 'showFeedbacks'])->name('feedbacks');
 });

@@ -20,10 +20,16 @@ class CreateProductsTable extends Migration
             $table->integer('period');
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('category_id');
-
-            $table->foreign('company_id')->references('id')->on('insurance_companies')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('insurance_companies')
+                ->onDelete('cascade');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('product_categories')
+                ->onDelete('cascade');
         });
     }
 

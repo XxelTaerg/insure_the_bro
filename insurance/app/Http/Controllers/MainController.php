@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Feedback\SendFeedbackRequest;
 use App\Repositories\ProductsRepository;
 use App\Services\MainService;
 use Illuminate\Contracts\Foundation\Application;
@@ -61,11 +62,12 @@ class MainController extends Controller
      *
      * @param int $productId
      * @param MainService $service
-     * @return Application|Factory|View
+     * @return Application|Factory|View|\Illuminate\Http\RedirectResponse
      */
-    public function sendFeedback(int $productId, MainService $service)
+    public function sendFeedback(int $productId, SendFeedbackRequest $request, MainService $service)
     {
-        $service->sendFeedback($productId, );
-        return view('send-feedback', ['product' => $service->getProductById($productId)]);
+        $isSend = $service->sendFeedback($productId, $request->validated());
+
+        return view('send-feedback', ['product' => $service->getProductById($productId)])->with('isSend', $isSend);
     }
 }

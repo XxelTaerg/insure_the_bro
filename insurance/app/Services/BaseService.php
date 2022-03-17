@@ -16,7 +16,7 @@ class BaseService
 
     public function __construct()
     {
-        $this->paginationCount = config('pagination.products.count') ?: 10;
+        $this->paginationCount = config('pagination.count') ?: 10;
     }
 
     /**

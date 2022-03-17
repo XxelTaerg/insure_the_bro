@@ -23,7 +23,6 @@
                 </div>
             </div>
 
-
             <div class="container">
                 <div class="row justify-content-center">
 
@@ -50,33 +49,63 @@
                         </table>
                     </div>
 
+                    @if(isset($isSend))
+                        <div class="container">
+                            <div class="row justify-content-center mb-2">
+                                @if($isSend)
+                                    <div class="text-success">Успешно отправлено!</div>
+                                @else
+                                    <div class="text-danger">Не отправлено!</div>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="col-lg-6 col-md-6">
                         <div class="contact-form-wrapper">
+
                             <form id="ajax-contact"
                                   action="{{ route('feedback.send', ['product_id' => $product->id]) }}" method="post"
                                   novalidate="true">
+                                @csrf
+
                                 <div class="contact-form">
                                     <label for="name">Ваше имя*</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Имя"
-                                           required="required">
-                                    <div class="help-block with-errors"></div>
+                                           required="required" value="{{ old('name') }}">
+                                    <div class="help-block with-errors text-danger">
+                                        @if($errors->has('name'))
+                                            {{ $errors->first('name') }}
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="contact-form">
                                     <label for="email">Email*</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           placeholder="Email" required="required">
-                                    <div class="help-block with-errors"></div>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                           placeholder="Email" required="required" value="{{ old('email') }}">
+                                    <div class="help-block with-errors text-danger">
+                                        @if($errors->has('email'))
+                                            {{ $errors->first('email') }}
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="contact-form">
-                                    <label for="message">Сообщение</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4"
-                                              placeholder="Сообщение"></textarea>
-                                    <div class="help-block with-errors"></div>
+                                    <label for="comment">Сообщение</label>
+                                    <textarea class="form-control" id="comment" name="comment" rows="4"
+                                              placeholder="Сообщение">{{ old('comment') }}</textarea>
+                                    <div class="help-block with-errors text-danger">
+                                        @if($errors->has('comment'))
+                                            {{ $errors->first('comment') }}
+                                        @endif
+                                    </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mt-3">Оставить заявку</button>
-                                <div class="messages"></div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary mt-3">Оставить заявку</button>
+                                </div>
+
                             </form>
+
                         </div>
                     </div>
                 </div>

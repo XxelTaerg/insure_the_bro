@@ -15,15 +15,17 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->string('surname');
-            $table->string('name');
-            $table->string('patronymic');
-            $table->string('phone');
-            $table->string('email');
             $table->unsignedBigInteger('product_id');
-
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('comment');
+            $table->boolean('is_sent');
             $table->timestamps();
+
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
         });
     }
 

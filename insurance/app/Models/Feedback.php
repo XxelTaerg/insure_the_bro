@@ -9,13 +9,25 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['surname', 'name', 'patronymic', 'phone', 'email', 'phone', 'product_id'];
+    /**
+     * @var string
+     */
+    protected $table = 'feedbacks';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @var string[]
+     */
+    protected $fillable = ['name', 'email', 'comment', 'product_id', 'is_sent'];
+
+    protected $casts = [
+        'is_sent' => 'boolean'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
