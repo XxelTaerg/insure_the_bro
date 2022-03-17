@@ -92,6 +92,7 @@
                                     <li class="nav-item menu-item-has-children">
                                         <span>{{ auth()->user()->name }}</span>
                                         <ul class="nav flex-column sub-menu">
+                                            <li class="nav-item"><a href="{{ route('account.index') }}">Личный кабинет</a></li>
                                             <li class="nav-item"><a href="{{ route('auth.signout') }}">Выйти</a></li>
                                         </ul>
                                     </li>

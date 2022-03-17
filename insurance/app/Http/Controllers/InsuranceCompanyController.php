@@ -7,6 +7,7 @@ use App\Services\InsuranceCompanyService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class InsuranceCompanyController extends Controller
 {
@@ -76,12 +77,24 @@ class InsuranceCompanyController extends Controller
     /**
      * Обновление продукта
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteProduct(int $id, InsuranceCompanyService $service)
     {
         $service->deleteProduct($id);
 
         return redirect()->back();
+    }
+
+    /**
+     * Список отликов на продукты компании
+     *
+     * @return Application|Factory|View
+     */
+    public function showFeedbacks(InsuranceCompanyService $service)
+    {
+        $feedbacks = $service->getFeedbacks();
+
+        return view('insurance-company.feedback', ['feedbacks' => $feedbacks]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Feedback;
 use App\Models\Product;
 use App\Repositories\ProductsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -30,5 +31,28 @@ class MainService extends BaseService
         return Product::query()
             ->where('category_id', $categoryId)
             ->paginate($this->paginationCount);
+    }
+
+    /**
+     * @param int $productId
+     * @param array $data
+     * @return bool
+     */
+    public function sendFeedback(int $productId, array $data)
+    {
+        $prepareData = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'comment' => $data['comment'] ?? '',
+            'product_id' => $productId,
+            'is_sent' => false
+        ];
+
+        $feedback = new Feedback();
+        $feedback->fill($prepareData);
+        $feedback->save();
+
+        $mailService = new MailService();
+        return $mailService->sendFeedback($feedback);
     }
 }

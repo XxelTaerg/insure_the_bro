@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Feedback;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,7 +69,8 @@ class InsuranceCompanyService extends BaseService
      * @param $product
      * @return mixed
      */
-    private function saveProductToDB($prepareData, $product) {
+    private function saveProductToDB($prepareData, $product)
+    {
         $product = $product->fill($prepareData);
         $product->save();
 
@@ -81,10 +83,25 @@ class InsuranceCompanyService extends BaseService
      * @param int $id
      * @return void
      */
-    public function deleteProduct(int $id) {
+    public function deleteProduct(int $id)
+    {
         Product::query()
             ->where('company_id', auth()->user()->id)
             ->where('id', $id)
             ->delete();
+    }
+
+    /**
+     * Список всех откликов
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getFeedbacks()
+    {
+        return Feedback::query()
+            ->with(['product' => function($q) {
+                $q->where('company_id', auth()->user()->id);
+            }])
+            ->paginate($this->paginationCount);
     }
 }
