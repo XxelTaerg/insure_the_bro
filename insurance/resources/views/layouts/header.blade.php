@@ -83,7 +83,7 @@
                             @guest
                                 <ul class="nav">
                                     <li class="login-dropdown menu-item-has-children">
-                                        <a href="{{ route('auth.login-show') }}" class="signin-form-trigger"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
+                                        <a href="{{ route('auth.login-show') }}"><span class="ti-user mr-1"></span>Вход/Регистрация</a>
                                     </li>
                                 </ul>
                             @endguest
