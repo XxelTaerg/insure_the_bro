@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Feedback;
 use App\Models\Product;
+use App\Jobs\FeedbackJob;
 use App\Repositories\ProductsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
@@ -40,19 +41,8 @@ class MainService extends BaseService
      */
     public function sendFeedback(int $productId, array $data)
     {
-        $prepareData = [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'comment' => $data['comment'] ?? '',
-            'product_id' => $productId,
-            'is_sent' => false
-        ];
+        FeedbackJob::dispatch($productId, $data)->onQueue('emails');;
 
-        $feedback = new Feedback();
-        $feedback->fill($prepareData);
-        $feedback->save();
-
-        $mailService = new MailService();
-        return $mailService->sendFeedback($feedback);
+        return true;
     }
 }

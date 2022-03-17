@@ -10,12 +10,12 @@ use PHPUnit\Exception;
 class MailService
 {
     /**
-     * Отправка на почту
+     * Отправка на почту отклик
      *
      * @param Feedback $feedback
      * @return bool
      */
-    public function sendFeedback(Feedback $feedback)
+    public static function sendFeedback(Feedback $feedback)
     {
         $product = Product::query()->find($feedback->product_id);
 
