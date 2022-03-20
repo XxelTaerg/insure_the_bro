@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('components.filter')
+
     <section class="vector-featurebox-section">
         <div class="section-inner">
             <div class="container">

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Product;
+use App\Models\InsuranceCompany;
 use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -37,5 +38,33 @@ class BaseService
     public function getProductById($id)
     {
         return Product::query()->find($id);
+    }
+
+    /**
+     * @param bool $withProducts
+     * @return array|\Illuminate\Database\Eloquent\Builder[]|Collection
+     */
+    public function getInsuranceCompanies(bool $withProducts = false)
+    {
+        return InsuranceCompany::query()
+            ->when($withProducts, function ($q) {
+                $q->has('products');
+            })
+            ->get();
+    }
+
+    /**
+     * Получение товара по id
+     *
+     * @return string[]
+     */
+    public function getSorts()
+    {
+        return [
+            'name' => 'Название',
+            'company' => 'Компания',
+            'period' => 'Срок',
+            'percent' => 'Процент',
+        ];
     }
 }
