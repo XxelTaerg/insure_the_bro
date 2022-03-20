@@ -2,35 +2,35 @@
 
 namespace App\Services;
 
-use App\Models\Feedback;
-use App\Models\Product;
 use App\Jobs\FeedbackJob;
+use App\Models\Product;
 use App\Repositories\ProductsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class MainService extends BaseService
 {
     /**
-     * @param Request $request
+     * @param array $data
      * @param ProductsRepository $productsRepository
      * @return LengthAwarePaginator
      */
-    public function getProducts(Request $request, ProductsRepository $productsRepository)
+    public function getProducts(array $data, ProductsRepository $productsRepository)
     {
-        return $request->has('search')
-            ? $productsRepository->search(request('search'))->paginate($this->paginationCount)
-            : Product::paginate($this->paginationCount);
+        return isset($data['search'])
+            ? $productsRepository->search($data['search'])->paginate($this->paginationCount)
+            : Product::query()->filter($data)->paginate($this->paginationCount);
     }
 
     /**
      * @param $categoryId
+     * @param array $data
      * @return LengthAwarePaginator
      */
-    public function getProductsByCategory($categoryId)
+    public function getProductsByCategory($categoryId, array $data)
     {
         return Product::query()
             ->where('category_id', $categoryId)
+            ->filter($data)
             ->paginate($this->paginationCount);
     }
 

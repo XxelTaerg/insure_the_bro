@@ -43,7 +43,18 @@ $.fn.foxycounter = function( options ) {
 	window.onload = function(){ foxy_page_onload() };
 
 	/* Document Ready */
-	$(document).ready(function(){
+	$(document).ready(function() {
+
+        $('#resetBtn').on('click', function () {
+            window.location.href = window.location.href.split('?')[0];
+            // $(':input', '#filter-form')
+            //     .not(':button, :submit, :reset')
+            //     .val('')
+            //     .prop('checked', false)
+            //     .prop('selected', false);
+            //
+            // $('#filter-form')[0].submit();
+        });
 
 		/* Mobile Menu Toggle */
 		if( $(".mobile-menu-wrapper").length ){

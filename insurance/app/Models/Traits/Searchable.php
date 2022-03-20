@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Traits;
+namespace App\Models\Traits;
 
 
-use App\Models\InsuranceCompany;
 use App\Search\ElasticsearchObserver;
 
 trait Searchable
@@ -17,10 +16,12 @@ trait Searchable
             static::observe(ElasticsearchObserver::class);
         }
     }
+
     public function getSearchIndex()
     {
         return $this->getTable();
     }
+
     public function getSearchType()
     {
         if (property_exists($this, 'useSearchType')) {
@@ -28,6 +29,7 @@ trait Searchable
         }
         return $this->getTable();
     }
+
     public function toSearchArray()
     {
         $data = $this->toArray();
